@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const User = require('./models/User');
 const app = express();
 
@@ -49,6 +50,41 @@ app.post('/register', (req, res) => {
             });
         }
     });
+});
+
+app.post('/login', (req, res) => {
+	const email = req.body.email;
+    const password = req.body.password;
+
+    User.findOne({ email }).then(user => {
+        if (!user) {
+            return res.status(400).json({ email: "User account does not exist" });
+
+        } else {
+            bcrypt.compare(password, user.password).then(isMatch => {
+                if (isMatch) {
+                    const payload = { id: user.id, name: user.name };
+
+                    // Sign Token
+                    jwt.sign(
+                        payload,
+                        'worstKeptSecret', { expiresIn: 3600 },
+                        (err, token) => {
+                            res.json({
+                                success: true,
+                                token: 'Bearer ' + token,
+                                name: user.name
+                            });
+                        }
+                    );
+
+
+                } else {
+                    return res.status(400).json({ email: "Passwords is invalid" });
+                }
+            })
+        }
+    })
 });
 
 const port = process.env.PORT || 5000;
