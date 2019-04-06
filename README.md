@@ -14,8 +14,6 @@ __/\\\\\\\\\\\\\_______/\\\\\\\\\_____/\\\______________/\\\__/\\\\\_____/\\\_
   - Clone the repo `git clone git@github.com:minhajkk/bawn.git && cd bawn` 
   - Install [heroku cli](https://devcenter.heroku.com/articles/heroku-cli)  `brew tap heroku/brew && brew install heroku`
   - Create heroku app `heroku create`
-  - Add mongolab addont `heroku addons:create mongolab`
-  - Add secret env variable `heroku config:set secret=theWorstKeptSecret`
   - Start deployment on heroku `git push heroku master`
 
 ## Tools Used
@@ -31,6 +29,5 @@ __/\\\\\\\\\\\\\_______/\\\\\\\\\_____/\\\______________/\\\__/\\\\\_____/\\\_
 - [expressjs](https://expressjs.com/)- Fast, unopinionated, minimalist web framework for Node.js
 - [passport](http://www.passportjs.org/) - for authentication
 - [passport-jwt](https://www.npmjs.com/package/passport-jwt) - for authenticating with a JSON Web Token.
-- [gravatarjs](https://www.npmjs.com/package/gravatarjs) - for generating a gravatar url
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - for JWT(json web token)
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs) - for password hashing
