@@ -4,12 +4,13 @@ const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User');
+const keys = require('./config/keys');
 const app = express();
 
 // Body parser middleware
 app.use(express.urlencoded({ extended: false }));
 
-const db = 'mongodb+srv://admin:admin@cluster0-rkrbc.mongodb.net/bawn_db?retryWrites=true';
+const db = keys.mongoURI;
 
 // Connect to MongoDB
 mongoose
